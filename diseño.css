@@ -1,0 +1,250 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Fondo oscuro dinámico con orbes de luz en movimiento continuo */
+body {
+  background-color: #0b0f19;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Orbe 1: Tonalidad índigo/púrpura flotante */
+body::before {
+  content: "";
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.8) 0%, rgba(99, 102, 241, 0) 70%);
+  top: -80px;
+  left: -80px;
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: 0;
+  animation: floatOrbOne 14s ease-in-out infinite alternate;
+}
+
+/* Orbe 2: Tonalidad fucsia/magenta flotante */
+body::after {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(217, 70, 239, 0.28) 0%, rgba(217, 70, 239, 0) 70%);
+  bottom: -100px;
+  right: -100px;
+  border-radius: 50%;
+  filter: blur(70px);
+  z-index: 0;
+  animation: floatOrbTwo 16s ease-in-out infinite alternate;
+}
+
+/* Movimiento orgánico para las luces del fondo */
+@keyframes floatOrbOne {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(120px, 140px) scale(1.15);
+  }
+  100% {
+    transform: translate(60px, 80px) scale(0.95);
+  }
+}
+
+@keyframes floatOrbTwo {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-140px, -100px) scale(1.2);
+  }
+  100% {
+    transform: translate(-50px, -60px) scale(0.9);
+  }
+}
+
+/* Animación de entrada suave hacia arriba */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Contenedor tipo tarjeta con efecto de cristal (Glassmorphism) */
+.form-container {
+  position: relative;
+  z-index: 1; /* Permite estar sobre los orbes luminosos */
+  background: rgba(30, 41, 59, 0.75); /* Fondo semitransparente */
+  backdrop-filter: blur(16px); /* Difumina las luces al pasar por detrás */
+  -webkit-backdrop-filter: blur(16px);
+  width: 100%;
+  max-width: 440px;
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.form-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.form-header h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.form-header p {
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 0.5rem;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid #334155;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #f1f5f9;
+  background-color: rgba(15, 23, 42, 0.85);
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #64748b;
+}
+
+/* Foco interactivo en inputs acorde a la paleta del botón */
+input:focus, textarea:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25);
+  background-color: rgba(15, 23, 42, 1);
+}
+
+/* ========================================================
+   BOTÓN ORIGINAL (INTACTO SEGÚN TU SOLICITUD)
+   ======================================================== */
+button {
+  position: relative;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 0.75rem;
+  overflow: hidden;
+
+  /* Fondo con gradiente degradado */
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #d946ef);
+  background-size: 200% 200%;
+
+  /* Sombra de neón suave */
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+
+  /* Transiciones fluidas */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: pulseGradient 6s ease infinite;
+}
+
+/* Animación sutil de los colores del degradado */
+@keyframes pulseGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Efecto de rayo de luz (shine) que cruza el botón */
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+
+/* Al pasar el mouse por encima */
+button:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.55);
+}
+
+button:hover::before {
+  left: 140%;
+}
+
+/* Al hacer clic */
+button:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 3px 10px rgba(139, 92, 246, 0.4);
+}
+
+/* Mensaje de error adaptado al tema oscuro */
+.mensaje-error {
+  background-color: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-size: 0.88rem;
+}
+.btn-history {
+  background: rgba(30, 41, 59, 0.9);
+  color: #cbd5e1;
+  border: 1px solid #475569;
+}
+
+.btn-history:hover {
+  background: rgba(51, 65, 85, 0.9);
+  color: #f8fafc;
+  border-color: #64748b;
+  transform: translateY(-2px);
+}
